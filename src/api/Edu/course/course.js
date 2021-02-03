@@ -34,7 +34,7 @@ export  default {
   //课程整体信息
   publishCourse(id){
     return request({
-      methodL: 'POST',
+      method: 'POST',
       url: `/eduService/edu-course/publishCourse/${id}`
     })
   },

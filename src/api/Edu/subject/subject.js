@@ -1,6 +1,5 @@
 import request from '@/utils/request'
 export  default {
-  //心理医师查询列表
   addSubject() {
     return request({
       method: 'POST',

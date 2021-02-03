@@ -116,7 +116,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/subject/list',
     name: '课程分类管理',
-    meta: { title: '课程分类管理', icon: 'el-icon-s-help' },
+    meta: { title: '课程分类管理', icon: 'tree-table' },
     children: [
       {
         path: 'list',
@@ -137,7 +137,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/course/list',
     name: '课程管理',
-    meta: { title: '课程管理', icon: 'el-icon-s-help' },
+    meta: { title: '课程管理', icon: 'education' },
     children: [
       {
         path: 'list',

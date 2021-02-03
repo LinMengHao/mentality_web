@@ -31,7 +31,7 @@
 
 <script>
   //引入调用course.js文件
-  import courseApi from '@/api/Edu//course/course'
+  import courseApi from '@/api/Edu/course/course'
   export default {
     data() {
       return {
