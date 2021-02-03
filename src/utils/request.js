@@ -35,7 +35,7 @@ service.interceptors.response.use(
   /**
    * If you want to get http information such as headers or status
    * Please return  response => response
-  */
+   */
 
   /**
    * Determine the request status by custom code
@@ -45,8 +45,9 @@ service.interceptors.response.use(
   response => {
     const res = response.data
 
-    // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    // if the custom code is not 200, it is judged as an error.
+    //如果返回状态码不是200，则报错
+    if (res.code !== 200) {
       Message({
         message: res.message || 'Error',
         type: 'error',
@@ -81,5 +82,16 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
+// service.interceptors.response.use(response => {
+//     const res = response.data
+//     console.info(res)
+//     if (res.token === null) {
+//       return Promise.reject(new Error(res.message || 'Error'))
+//     } else {
+//       return res
+//     }
+//   },
+//   error => {
+//     console.log('err' + error) // for debug return Promise.reject(error)
+//   })
 export default service

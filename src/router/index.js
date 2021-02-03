@@ -78,20 +78,108 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        name: '“益”起行心理后台管理',
+        meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
   },
   {
-    path: '/documentation',
+    path: '/system',
     component: Layout,
+    redirect: '/system/psychologistList',
+    name: 'System',
+    meta: { title: '系统管理', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }
+        path: 'psychologistList',
+        name: '心理医师列表',
+        component: () => import('@/views/psychologist/index'),
+        meta: { title: '心理医师列表', icon: 'peoples' }
+      },
+      {
+        path: 'info',
+        name: '添加心理医师',
+        component: () => import('@/views/psychologist/updateOrSave'),
+        meta: { title: '添加心理医师', icon: 'edit'}
+      },
+      {
+        path: 'info/:id',
+        name: '心理医师修改',
+        component: ()=> import('@/views/psychologist/updateOrSave'),
+        meta: { title: '心理医师修改', icon: 'edit'},
+        hidden: true
+      }
+      ]
+  },
+  {
+    path: '/subject',
+    component: Layout,
+    redirect: '/subject/list',
+    name: '课程分类管理',
+    meta: { title: '课程分类管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: '课程分类列表',
+        component: () => import('@/views/subject/index'),
+        meta: { title: '课程分类列表', icon: 'tree' }
+      },
+      {
+        path: 'save',
+        name: '添加课程分类',
+        component: () => import('@/views/subject/save'),
+        meta: { title: '添加课程分类', icon: 'excel'}
+      },
+    ]
+  },
+  {
+    path: '/course',
+    component: Layout,
+    redirect: '/course/list',
+    name: '课程管理',
+    meta: { title: '课程管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'list',
+        name: '课程列表',
+        component: () => import('@/views/course/index'),
+        meta: { title: '课程列表', icon: 'list' }
+      },
+      {
+        path: 'save',
+        name: '添加课程',
+        component: () => import('@/views/course/info'),
+        meta: { title: '添加课程', icon: 'education'}
+      },
+      {
+        path: 'info/:id',
+        name: 'EduCourseInfoEdit',
+        component: () => import('@/views/course/info'),
+        meta: {
+          title: '编辑课程基本信息',
+          noCache: true
+        },
+        hidden: true
+      },
+      {
+        path: 'chapter/:id',
+        name: 'EduCourseChapterEdit',
+        component: () => import('@/views/course/chapter'),
+        meta: {
+          title: '编辑课程大纲',
+          noCache: true
+        },
+        hidden: true
+      },
+      {
+        path: 'publish/:id',
+        name: 'EduCoursePublishEdit',
+        component: () => import('@/views/course/publish'),
+        meta: {
+          title: '发布课程',
+          noCache: true
+        },
+        hidden: true
       }
     ]
   },
