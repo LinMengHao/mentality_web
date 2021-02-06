@@ -44,5 +44,11 @@ export  default {
       methodL: 'GET',
       url: `/eduService/edu-course/getCoursePublishInfo/${id}`
     })
+  },
+  deleteCourseById(courseId){
+    return request({
+      url:`/eduService/edu-course/deleteCourse/${courseId}`,
+      method:'DELETE'
+    })
   }
 }
