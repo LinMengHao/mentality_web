@@ -92,7 +92,7 @@
             :before-remove="beforeVodRemove"
             :on-exceed="handleUploadExceed"
             :file-list="fileList"
-            :action="BASE_API+'/eduVod/uploadAlyVideo'"
+            :action="BASE_API+'/vodService/uploadAlyVideo'"
             :limit="1"
             class="upload-demo">
             <!-- <el-button size="small" type="primary">上传视频</el-button> -->
@@ -249,10 +249,10 @@
       //修改小节信息   弹框  数据回显
       openEditVideo(videoId) {
         //弹框
-        this.dialogVideoFormVisible = true
+        this.dialogVideoFormVisible = true;
         if (videoId) {
           videoApi.getVideo(videoId).then(response => {
-            this.video = response.data.video
+            this.video = response.data.video;
             //回显
             if (this.video.videoOriginalName) {
               this.fileList = [{ 'name': this.video.videoOriginalName }]
@@ -269,20 +269,20 @@
 
       //上传视频成功调用的方法
       handleVodUploadSuccess(response, file, fileList) {
-        this.uploadBtnDisabled = false
+        this.uploadBtnDisabled = false;
         if (response.success) {
           //上传视频id赋值
-          this.video.videoSourceId = response.data.videoId
+          this.video.videoSourceId = response.data.videoId;
           //上传视频名称赋值
           this.video.videoOriginalName = file.name
         } else {
-          this.$message.error('上传失败（非20000）')
+          this.$message.error('上传失败（非999）')
         }
       },
 
       // 失败回调
       handleUploadError() {
-        this.uploadBtnDisabled = false
+        this.uploadBtnDisabled = false;
         this.$message.error('上传失败（http）')
       },
 
@@ -306,14 +306,14 @@
               message: '删除视频成功! 😄'
             });
             //把文件列表清空
-            this.fileList = []
+            this.fileList = [];
             //把video视频id和视频名称值清空
             //上传视频id赋值
-            this.video.videoSourceId = ''
+            this.video.videoSourceId = '';
             //上传视频名称赋值
-            this.video.videoOriginalName = ''
+            this.video.videoOriginalName = '';
             // 删除视频的同时更新video数据信息
-            videoApi.updateVideo(this.video)
+            videoApi.updateVideo(this.video);
             this.$message.success(response.message)
           })
       },

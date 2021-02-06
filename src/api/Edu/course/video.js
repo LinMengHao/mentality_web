@@ -28,5 +28,11 @@ export  default {
       url:`/eduService/edu-video/deleteVideo/${VideoId}`,
       method:'DELETE'
     })
+  },
+  deleteAlyVod(videoSourceId){
+    return request({
+      url:`/vodService/deleteAlyVideo/${videoSourceId}`,
+      method:'DELETE'
+    })
   }
 }

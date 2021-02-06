@@ -29,6 +29,10 @@
 
       <el-button type="primary" plain="true" icon="el-icon-search" @click="getList()">查询</el-button>
       <el-button type="default" plain="true" @click="resetData()">清空</el-button>
+      <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download"
+                 @click="handleDownload">
+        导出
+      </el-button>
     </el-form>
 
     <!-- 表格 -->
@@ -61,7 +65,7 @@
           </p>
           <p>
             浏览：{{ scope.row.viewCount }} /
-            付费学员：{{ scope.row.buyCount }}
+            销售数量：{{ scope.row.buyCount }}
           </p>
         </template>
       </el-table-column>
@@ -123,6 +127,7 @@
     //写核心代码的位置
     data() { //定义变量和初始值
       return {
+        downloadLoading: false,
         list: null, //查询之后接口返回集合
         page: 1, //当前页
         limit: 10, //每页记录数
@@ -224,7 +229,43 @@
         //点取消执行catch方法  用户体验角度
         //此处无需进行提示取消
         //框架在./utils/request.js封装好了提示error的方法
-      }
-    }
+      },
+//导出excel表
+      handleDownload() {
+        this.downloadLoading = true;
+        import('@/vendor/Export2Excel').then(excel => {
+          const tHeader = [ '课程名称', '课时', '浏览量', '销售数量', '价格', '状态'];
+          const filterVal = ['title', 'lessonNum', 'viewCount', 'buyCount', 'price', 'status'];
+          const data = this.formatJson(filterVal);
+          excel.export_json_to_excel({
+            header: tHeader,
+            data,
+            filename: '心理课程列表'
+          });
+          this.downloadLoading = false
+        });
+        // 清空已输入数据
+        this.psychologistQuery = {};
+        // 查询所有  恢复未进行条件查询的状态
+        this.getList()
+      },
+      formatJson(filterVal) {
+        this.list.map(s => {
+            if (s.status === 'Draft') {
+              s.status = '未发布'
+            } else {
+              s.status = '发布'
+            }
+            return s
+          }
+        );
+        return this.list.map(v => filterVal.map(j => {
+          if (j === 'timestamp') {
+            return parseTime(v[j])
+          } else {
+            return v[j]
+          }
+        }))
+      }    }
   }
 </script>
