@@ -184,6 +184,41 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/banner',
+    component: Layout,
+    redirect: '/banner/list',
+    name: 'Banner管理',
+    meta: { title: 'Banner管理', icon: 'example' },
+    children: [
+      {
+        path: 'list',
+        name: 'Banner列表',
+        component: () => import('@/views/banner/list'),
+        meta: { title: 'Banner列表', icon: 'table' }
+      },
+
+      {
+        path: 'update/:id',
+        name: 'update',
+        component: () => import('@/views/banner/add'),
+        meta: {
+          title: '修改Banner',
+          noCache: true
+        },
+        hidden: true
+      },
+      {
+        path: 'add',
+        name: 'update',
+        component: () => import('@/views/banner/add'),
+        meta: {
+          title: '添加Banner',
+          icon: 'edit'
+        },
+      }
+    ]
+  },
+  {
     path: '/guide',
     component: Layout,
     redirect: '/guide/index',

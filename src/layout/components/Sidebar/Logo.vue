@@ -24,8 +24,8 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Element Admin',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: '益起行心理教育',
+      logo: 'https://edu-manager-lmh.oss-cn-beijing.aliyuncs.com/2020/08/12/89d5f7a4b36c4cdf91035211ee101a00800095598.jpg'
     }
   }
 }
