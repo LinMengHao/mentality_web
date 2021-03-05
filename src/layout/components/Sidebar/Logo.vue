@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       title: '益起行心理教育',
-      logo: 'https://edu-manager-lmh.oss-cn-beijing.aliyuncs.com/2020/08/12/89d5f7a4b36c4cdf91035211ee101a00800095598.jpg'
+      logo: 'https://edu-manager-lmh.oss-cn-beijing.aliyuncs.com/20210305105118486_easyicon_net_16.ico'
     }
   }
 }
